@@ -1,0 +1,40 @@
+name: Auto Blog Post from Furtune App Release
+
+on:
+  repository_dispatch:
+    types: [new-furtune-release]
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install openai requests markdown
+
+      - name: Generate blog post
+        env:
+          NOVA_KEY: ${{ secrets.NOVA_KEY }}
+          FURTUNE_URL: ${{ secrets.FURTUNE_URL }}
+          NOVA_MODEL: ${{ vars.NOVA_MODEL }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SOURCE_REPO: ${{ vars.SOURCE_REPO }}
+          VERSION: ${{ github.event.client_payload.version }}
+          PUBLISHED_AT: ${{ github.event.client_payload.published_at }}
+        run: python .github/scripts/generate_post.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "Rumi"
+          git config user.email "rumi@furtune.org"
+          git add posts/ journal.html sitemap.xml
+          git diff --staged --quiet && echo "Nothing to commit" && exit 0
+          git commit -m "feat: Rumi's journal entry for ${{ github.event.client_payload.version }}"
+          git push origin main

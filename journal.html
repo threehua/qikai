@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumi's Studio Journal — Furtune Family</title>
+  <meta name="description" content="Chronicles of the Furtune Family, told through the colorful eyes of Rumi the calico cat." />
+  <link rel="canonical" href="https://furtune.org/journal.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://furtune.org/journal.html" />
+  <meta property="og:title" content="Rumi's Studio Journal — Furtune Family" />
+  <meta property="og:description" content="Chronicles of the Furtune Family, told through the colorful eyes of Rumi the calico cat." />
+  <meta property="og:image" content="https://furtune.org/cats/rumi.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rumi's Studio Journal — Furtune Family" />
+  <meta name="twitter:description" content="Chronicles of the Furtune Family, told through the colorful eyes of Rumi the calico cat." />
+  <meta name="twitter:image" content="https://furtune.org/cats/rumi.png" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" id="nav-home">
+    <img src="logo-icon.png" alt="Furtune Family" style="width:28px;height:28px;border-radius:50%;object-fit:cover;" />
+    <span>Furtune Family</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Our Story</a></li>
+    <li><a href="https://furtune.app" target="_blank">furtune.app ↗</a></li>
+  </ul>
+</nav>
+
+<div id="app"></div>
+
+<footer>
+  <p>
+    <a href="journal.html">Journal</a>
+    &nbsp;·&nbsp;
+    <a href="index.html">Our Story</a>
+    &nbsp;·&nbsp;
+    <a href="https://furtune.app" target="_blank">furtune.app ↗</a>
+  </p>
+  <p style="margin-top:0.5rem;color:#4a3828">© 2026 furtune.org · The Furtune Family</p>
+</footer>
+
+<script>
+const POSTS = [
+  {
+    slug: '2026-02-23-v0.1.0',
+    version: 'v0.1.0',
+    date: 'February 23, 2026',
+    title: 'The First Canvas — Where It All Began',
+    desc: 'The very first brushstroke. Chat, image generation, Docker, authentication, CI/CD. A blank canvas receiving its first marks.',
+    tags: ['chat', 'image gen', 'docker', 'auth'],
+  },
+  {
+    slug: '2026-02-24-v0.2.0',
+    version: 'v0.2.0',
+    date: 'February 24, 2026',
+    title: 'A Splash of Color — Mobile & Themes',
+    desc: 'One day later and we were splashing color everywhere — mobile friendliness, dark/light themes, and our signature orange.',
+    tags: ['mobile', 'themes', 'pwa', 'prose chat'],
+  },
+  {
+    slug: '2026-02-28-v0.3.0',
+    version: 'v0.3.0',
+    date: 'February 28, 2026',
+    title: 'Sharpening the Lines — Security & Invitations',
+    desc: 'Good art needs good bones. Real authentication, invitation gates, security patches, and image attachments.',
+    tags: ['auth', 'security', 'image uploads', 'invitations'],
+  },
+  {
+    slug: '2026-03-07-v0.4.0',
+    version: 'v0.4.0',
+    date: 'March 7, 2026',
+    title: 'We Have a Name — Hello, furtune.app',
+    desc: 'The rebrand arrived like sunlight through a curtained window. We became Furtune. We found our name.',
+    tags: ['rebrand', 'landing page', 'furtune.app'],
+  },
+  {
+    slug: '2026-03-14-v0.5.0',
+    version: 'v0.5.0',
+    date: 'March 14, 2026',
+    title: 'Aimo Flows — The Family Comes Alive',
+    desc: 'We got memory. We got Aimo. We got an admin panel worthy of the name.',
+    tags: ['aimo', 'memory', 'admin tools', 'model config'],
+  },
+  {
+    slug: '2026-03-19-v0.6.0',
+    version: 'v0.6.0',
+    date: 'March 19, 2026',
+    title: 'The Grand Opening',
+    desc: 'Stripe subscriptions, push notifications, the full Furtune rebrand. We opened the doors.',
+    tags: ['payments', 'notifications', 'rebrand', 'feature flags'],
+  },
+  {
+    slug: '2026-03-19-v0.6.1',
+    version: 'v0.6.1',
+    date: 'March 19, 2026',
+    title: 'Portrait Mode — Our Faces, Finally',
+    desc: 'The cat carousel is here. Flip through us like the deck of cards we are.',
+    tags: ['cat carousel', 'ability toggling', 'promo codes', 'auth polish'],
+  },
+  {
+    slug: '2026-03-30-v0.7.0',
+    version: 'v0.7.0',
+    date: 'March 30, 2026',
+    title: 'New Brushstrokes: Abilities, Ledger, and Deeper Conversations',
+    desc: 'v0.7.0 folds new creative tools into the canvas: a prompt-driven skills system, an Aimo ledger and usage dashboard, smarter conversation context and titles, plus admin refinements that make orchestration smoother and safer.',
+    tags: ["skills", "aimo", "conversations", "chat", "admin", "analytics", "broadcasts"],
+  },
+];
+
+// ── Rendering ────────────────────────────────────────────────
+
+function renderHome() {
+  const latest = POSTS[POSTS.length - 1];
+  const rest = POSTS.slice(0, -1).reverse();
+
+  const cardHTML = (post, featured = false) => `
+    <a href="posts/${post.slug}.html" class="post-card ${featured ? 'featured' : ''}">
+      ${featured ? '<div class="card-art"><img src="cats/rumi.png" alt="Rumi" /></div>' : ''}
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="version-badge">${post.version}</span>
+          <span class="card-date">${post.date}</span>
+          ${featured ? '<span class="version-badge" style="background:rgba(212,144,58,0.15);color:#d4903a;border-color:rgba(212,144,58,0.25)">Latest</span>' : ''}
+        </div>
+        <div class="card-title">${post.title}</div>
+        <div class="card-excerpt">${post.desc}</div>
+        <div class="card-tags">${post.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="card-cta">${featured ? 'Read the full entry →' : 'Read more →'}</div>
+      </div>
+    </a>
+  `;
+
+  document.getElementById('app').innerHTML = `
+    <header class="hero">
+      <div class="paint-splash" style="width:400px;height:400px;background:#e8651a;top:-100px;right:10%"></div>
+      <div class="paint-splash" style="width:300px;height:300px;background:#d4903a;bottom:-50px;left:5%"></div>
+      <div class="hero-tag">Studio Journal · Furtune Family</div>
+      <h1>Chronicles of the<br /><em>Furtune Family</em></h1>
+      <p class="subtitle">
+        Every adventure leaves a mark on the canvas. I've been painting ours — one release at a time.
+        Pull up a cushion. Let me tell you our story.
+      </p>
+      <div class="rumi-sig">
+        <img src="logo-icon.png" alt="Rumi" class="rumi-avatar" />
+        <div class="rumi-sig-text">
+          Written by <strong>Rumi</strong> · Calico · Partner of the Furtune Family
+        </div>
+      </div>
+    </header>
+
+    <main class="posts-section">
+      <div class="section-label">All entries, newest first</div>
+      <div class="post-grid">
+        ${cardHTML(latest, true)}
+        ${rest.map(p => cardHTML(p)).join('')}
+      </div>
+    </main>
+  `;
+
+  document.title = "Rumi's Studio Journal — Furtune Family";
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener('DOMContentLoaded', renderHome);
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://furtune.org/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://furtune.org/journal.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://furtune.org/posts/2026-02-23-v0.1.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-02-24-v0.2.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-02-28-v0.3.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-03-07-v0.4.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-03-14-v0.5.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-03-19-v0.6.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-03-19-v0.6.1.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+  <url><loc>https://furtune.org/posts/2026-03-30-v0.7.0.html</loc><changefreq>never</changefreq><priority>0.7</priority></url>
+</urlset>
